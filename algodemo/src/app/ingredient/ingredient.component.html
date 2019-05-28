@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-card-title>{{ingredient.name}}</mat-card-title>
+    <mat-card-content *ngIf="ingredient.configurable">
+        <mat-form-field>
+          <mat-label>Quantity:</mat-label>
+          <input matNativeControl [(ngModel)]="ingredient.quantity" />
+        </mat-form-field>
+        <mat-form-field *ngFor="let option of ingredient.options">
+            <mat-label>{{option.name}}</mat-label>
+            <input matNativeControl [(ngModel)]="option.value" />
+          </mat-form-field>
+      </mat-card-content>          
+  <mat-card-actions>
+      <button  mat-flat-button type="button" (click)="configureQty()">Configure Quantity</button>
+  </mat-card-actions>
+  </mat-card>

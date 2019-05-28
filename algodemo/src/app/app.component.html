@@ -1,0 +1,27 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    <button mat-flat-button color="primary" type="button" (click)="printRecipe()">BAKE</button>
+  </h1>
+</div>
+<mat-card cdkDropList 
+    (cdkDropListDropped)="drop($event)" 
+    [cdkDropListData]="recipeMenu"
+    [cdkDropListConnectedTo]="[recipeList]"
+    CdkDropListGroup 
+    #menuList="cdkDropList">
+    <mat-card-title>Ingredients</mat-card-title>    
+    <app-ingredient *ngFor="let currentIngredient of recipeMenu" [ingredient]="currentIngredient" cdkDrag></app-ingredient>
+</mat-card>
+<mat-card cdkDropList 
+    (cdkDropListDropped) ="drop($event)" 
+    [cdkDropListData]="currentRecipe"
+    [cdkDropListConnectedTo]="[menuList]"
+    CdkDropListGroup 
+    #recipeList="cdkDropList">
+    <mat-card-title>Recipe</mat-card-title>
+    <app-ingredient *ngFor="let currentIngredient of currentRecipe" [ingredient]="currentIngredient" cdkDrag></app-ingredient>
+</mat-card>
+
+
+<router-outlet></router-outlet>
